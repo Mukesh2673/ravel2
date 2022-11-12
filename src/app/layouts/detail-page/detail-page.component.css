@@ -1,0 +1,22 @@
+.active{
+    color:tomato;
+}
+agm-map {
+    height: 350px;
+    color: black
+}
+.shimmer2.mapShimmer {
+    min-height: 500px;
+}
+.shimmer2.mobileNetWrap {
+    height: 286px;
+    margin-bottom: 0;
+}
+.ImgTextWrap .ImgWrap img {
+    border-radius: 100%;
+}
+.ImgTextWrap {
+    padding: 20px;
+    background: #eee;
+    border-radius: 8px;
+}

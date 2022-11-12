@@ -1,0 +1,44 @@
+<section id="Ravel-header">
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <a class="navbar-brand" href="#"><img class="logo-set" src="./assets/img/logo.png"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample03"
+      aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExample03">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item ">
+          <a class="nav-link" href="#">Home </a>
+        </li>
+        <li class="nav-item" >
+          <a class="nav-link" href="#toDiscount"> Marketplace </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#toWord">Word & Worship </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#toCommunity">Community & Fellowship </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#toScroll">News & Entertainment </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#toGive"> Give & Serve </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#toTools"> Tools & Resources </a>
+        </li>
+        <li class="nav-item" *ngIf="!isLoggedIn">
+          <a style="cursor: pointer;" class="nav-link" (click)="login()"> Login </a>
+        </li>
+        <li class="nav-item" *ngIf="isLoggedIn">
+          <a style="cursor: pointer;" class="nav-link" (click)="logout()"> Logout </a>
+        </li>
+      </ul>
+      <div class="list-button">
+        <a class="button" href="">Get Listed Today <br> <span>Free!</span></a>
+      </div>
+    </div>
+  </nav>
+</section>

@@ -1,0 +1,384 @@
+<app-header></app-header>
+<div class="listing-body-area" *ngIf="islisting">
+  <!-----tets-->
+  <section id="listing-inner-section" class="listing-inner-section">
+    <div class="container" *ngIf="islisting">
+      <div class="row" data-aos="fade-up">
+        <div class="col-12 col-sm-12 col-md-3 col-lg-3">
+          <div class="row row-padding">
+            <div class="col-12 col-md-12">
+              <div class="shimmer"></div>
+            </div>
+          </div>
+          <div class="margin-bottom"></div>
+          <div class="row row-padding">
+            <div class="col-12 col-md-12">
+              <div class="shimmer"></div>
+            </div>
+          </div>
+        </div>
+        <!----col-3-end---->
+
+        <div class="col-sm-12 col-md-9 col-lg-9">
+          <div class="row">
+            <div class="col-sm-5 col-md-5 col-lg-5">
+              <div class="shimmer3"></div>
+            </div>
+
+            <div class="col-sm-2 col-md-2 col-lg-2"></div>
+
+            <div class="col-sm-5 col-md-5 col-lg-5">
+              <div class="shimmer3"></div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-5 col-md-5 col-lg-5">
+              <div class="shimmer3"></div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+              <div
+                class="shimmer2"
+                *ngFor="let number of [0, 1, 2, 3, 4]"
+              ></div>
+            </div>
+          </div>
+
+          <div class="margin-bottom"></div>
+        </div>
+        <!----col-9-end---->
+      </div>
+      <!---row-end-->
+    </div>
+  </section>
+  <!--endtes-->
+</div>
+<div class="listing-body-area" *ngIf="!islisting">
+  <!----------------SEARCH-RESULT-SECTION-START-HERE----------------->
+  <section id="serch-result-section" class="serch-result-section">
+    <div class="container">
+      <div class="row" data-aos="fade-up">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+          <div class="serch-result"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!----------------SEARCH-RESULT-SECTION-END-HERE----------------->
+
+  <!----------------SEARCH-RESULT-SECTION-START-HERE----------------->
+
+  <section id="listing-inner-section" class="listing-inner-section">
+    <div class="container">
+      <div class="row" data-aos="fade-up">
+        <div class="col-12 col-sm-12 col-md-3 col-lg-3">
+          <div class="row row-padding">
+            <div class="find-trader-form">
+              <div class="col-12 col-md-12">
+                <h4>Find Traders</h4>
+                <div class="form-group form-group-sm">
+                  <label for="firstname" class="control-label"
+                    >What do you need:</label
+                  >
+                  <select
+                    placeholder="Country"
+                    [(ngModel)]="selectType"
+                    (change)="selectBusiness($event)"
+                  >
+                    <option value="">--Choose--</option>
+                    <option
+                      *ngFor="let props of businessType"
+                      [value]="props.name"
+                    >
+                      {{ props.name }}
+                    </option>
+                  </select>
+                </div>
+                <div class="form-group" *ngIf="specilization1">
+                  <label for="lastname" class="control-label"
+                    >Specializing In:</label
+                  >
+                  <select
+                    placeholder="State"
+                    [(ngModel)]="selectCategoryType"
+                    (change)="changeCategory($event)"
+                  >
+                    <option value="">Select</option>
+                    <ng-container *ngIf="typeArr.length != 0">
+                      <option *ngFor="let props of typeArr" [value]="props._id">
+                      {{resultBasisOnType(props)}}
+                      </option>
+                    </ng-container>
+                  </select>
+                </div>
+                <div class="form-group" *ngIf="specilization2">
+                  <label for="lastname" class="control-label"
+                    >Specializing In:</label
+                  >
+                  <select
+                    placeholder="City"
+                    (change)="changeSubCategory($event)"
+                  >
+                    <option value="">Select</option>
+                    <ng-container *ngIf="subBusinessItem.length != 0">
+                      <option
+                        *ngFor="let props of subBusinessItem"
+                        [value]="props._id"
+                      >
+                      {{resultBasisOnCategory(props)}}
+                        <!-- {{ props.tag }} -->
+                      </option>
+                    </ng-container>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="lastname" class="control-label"
+                    >Search by location</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="lastname"
+                    placeholder="(Optional)"
+                  />
+                </div>
+                <div class="Search-now">
+                  <button
+                    type="submit"
+                    class="btn btn-default"
+                    (click)="onTableDataChange(1)"
+                  >
+                    Search Now
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="row row-padding review">
+            <div class="find-trader-form">
+              <div class="col-md-12">
+                <h4>Recent Review</h4>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <img class="img-fluid" src="{{ testimage }}" />
+                </div>
+                <div class="col-md-12 col-lg-12 col-xl-8">
+                  <div class="start-area">
+                    <ul>
+                      <li>
+                        <a href="#"><img src="./assets/img/star.png" /></a>
+                      </li>
+                      <li>
+                        <a href="#"><img src="./assets/img/star.png" /></a>
+                      </li>
+                      <li>
+                        <a href="#"><img src="./assets/img/star.png" /></a>
+                      </li>
+                      <li>
+                        <a href="#"><img src="./assets/img/star.png" /></a>
+                      </li>
+                      <li>
+                        <a href="#"><img src="./assets/img/star.png" /></a>
+                      </li>
+                    </ul>
+                    <p>Sample Member Listing</p>
+                    <p class="wonder">
+                      I have wonder experience working with this company
+                    </p>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="Search-now">
+                    <button type="submit" class="btn btn-default">
+                      View More
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> -->
+        </div>
+        <!----col-3-end---->
+
+        <div class="col-sm-12 col-md-9 col-lg-9">
+          <div class="row">
+            <div class="col-sm-7 col-md-7 col-lg-7">
+              <div class="serch-result">
+                <p>Home / Search Result</p>
+              </div>
+            </div>
+            <div class="col-sm-5 col-md-5 col-lg-5">
+              <div class="listing-griding-area">
+                <ul>
+                  <li>
+                    <div class="form-group">
+                      <select name="cars" id="cars" form="carform">
+                        <option value="Sort Result">Sort Result</option>
+                        <option value="Sort By Name A-Z">
+                          Sort By Name A-Z
+                        </option>
+                        <option value="Sort By Name Z-A">
+                          Sort By Name Z-A
+                        </option>
+                        <!-- <option value="audi">Audi</option> -->
+                      </select>
+                    </div>
+                  </li>
+                  <li (click)="clicklisting()">
+                    <i class="fa fa-list" aria-hidden="true"></i>
+                  </li>
+                  <li (click)="clickBox()">
+                    <i class="fa fa-th" aria-hidden="true"></i>
+                  </li>
+                  <li (click)="clickgoogleMap()">
+                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+              <h3>Search Results</h3>
+            </div>
+          </div>
+          <!-- Listing page -->
+
+          <div *ngIf="isList">
+            <div
+              class="row"
+              *ngFor="
+                let record of searchList
+                  | paginate
+                    : {
+                        itemsPerPage: pageSize,
+                        currentPage: pageNo,
+                        totalItems: totalItems
+                      };
+                let i = index
+              "
+            >
+              <div class="col-sm-12 col-md-12 col-lg-12 margin-bottom">
+                <div class="white-border-line"></div>
+              </div>
+              <div class="col-sm-12 col-md-2 col-lg-2">
+                <img class="img-fluid" src="./assets/img/placeholder.png" />
+              </div>
+              <div class="col-sm-12 col-md-6 col-lg-7">
+                <h5>{{ record.name }}</h5>
+                <div class="map-location">
+                  <span
+                    ><i class="fa fa-map-marker" aria-hidden="true"></i
+                    >{{ record.address.country }}
+                    {{ record.address.city }}</span
+                  >
+                </div>
+              </div>
+              <div class="col-sm-12 col-md-4 col-lg-3">
+                <div class="listing-message">
+                  <ul>
+                    <li class="btn-list"><a href="#">View Listing</a></li>
+                    <li class="btn-message"><a href="#">Contact</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-offset-4" style="float: left" *ngIf="!isMap">
+            <pagination-controls
+              class="col s12 col-md-offset-3 my-pagination"
+              *ngIf="searchList.length > 0"
+              (pageChange)="onTableSizeChange($event)"
+              previousLabel="Previous"
+              nextLabel="Next"
+              screenReaderPaginationLabel="Pagination"
+              screenReaderPageLabel="page"
+              screenReaderCurrentLabel="You're on page"
+            >
+            </pagination-controls>
+          </div>
+          <!-- Listing page end -->
+          <!-- <ngx-shimmer-loading></ngx-shimmer-loading> -->
+          <!-- Grid Listing -->
+          <div *ngIf="isbox">
+            <div class="row">
+              <div class="col-sm-12 col-md-12 col-lg-12 margin-bottom">
+                <div class="white-border-line"></div>
+              </div>
+              <div
+                class="col-sm-12 col-md-4 col-lg-4"
+                *ngFor="let record of searchList"
+              >
+                <div class="listing-message grid-listing">
+                  <img class="img-fluid" src="./assets/img/placeholder.png" />
+                  <h5>{{ record.name }}</h5>
+                  <div class="map-location">
+                    <span
+                      ><i class="fa fa-map-marker" aria-hidden="true"></i>
+                      Ludhiana</span
+                    >
+                    <ul>
+                      <li class="btn-list"><a href="#">View Listing</a></li>
+                      <li class="btn-message"><a href="#">Send Message</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Grid Listing end -->
+          <!-- Googlemap-->
+          <div *ngIf="isMap">
+            <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
+              <agm-marker
+                *ngFor="let m of marArr; let i = index"
+                [latitude]="m.lng"
+                [longitude]="m.lat"
+                [markerDraggable]="m.draggable"
+                (dragEnd)="markerDragEnd(m, $event)"
+              >
+                <p>{{ m.lat }}</p>
+                <agm-info-window>
+                  <strong>InfoWindow content</strong>
+                </agm-info-window>
+              </agm-marker>
+              <!-- 
+              <agm-circle
+                [latitude]="lat + 0.3"
+                [longitude]="lng"
+                [radius]="5000"
+                [fillColor]="'red'"
+                [circleDraggable]="true"
+                [editable]="true"
+              >
+              </agm-circle> -->
+            </agm-map>
+          </div>
+          <!-- Googlemap end-->
+        </div>
+      </div>
+    </div>
+
+    <div></div>
+    <app-footer></app-footer>
+  </section>
+</div>
+
+<!-- <div class="page-body" *ngIf="!islisting == false && searchList.length == 0">
+  <div class="row">
+    <div class="col-md-12 col-xl-12">
+      <div class="tab-content">
+        <div class="tab-pane active" id="personal" role="tabpanel">
+          <div class="card">
+            <div class="card-block">
+              <h4>No Results Found</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->

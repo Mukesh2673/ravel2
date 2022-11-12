@@ -1,0 +1,65 @@
+<app-header login='yes'></app-header>
+
+<div class="backgroundImage">
+    
+    <div class="container">
+        
+        <div class="d-flex justify-content-center h-100">
+            <div class="responsive">
+                <div class="card-wrapper">
+                    <div class = "container">
+                        <div style="margin-top: -80px;" class= "row">
+                            <button type="button" class="btn btn-primary mr-3">Individual</button>
+                            <button type="button" class="btn btn-secondary" (click)="fellowshipLogin()">Fellowship</button>
+                            <button type="button" class="btn btn-success ml-3" (click)="merchantLogin()">Merchant</button>
+                        </div>
+                    
+                    </div>
+                    <div class="login-screen-area ">
+                        <h4 style="font-size: 30px;">Login</h4>
+                    </div>
+   
+                    <div class="form-field">
+                        <button routerLink="/claim-list" type="button" class="google btn btn-lg btn-block">
+                            <span style="width: 25%;" class="icon-name"><i class="fas fa-search color"></i></span>
+                            <span class="icon-text">Search & Claim Profile</span>
+                        </button>
+                    </div>
+                    <div class="row">
+                        <h4>Continue with ...</h4>
+                    </div>
+
+                    <div class="form-field">
+                        <button (click)="facebookLogin()" type="button"
+                            class="facebook btn btn-primary btn-lg btn-block">
+                            <span class="icon-name"><i class="fab fa-facebook-f"></i></span>
+                            <span class="icon-text">Facebook</span>
+                        </button>
+
+                        <button (click)="googleLogin()" type="button" class="google1 btn btn-primary btn-lg btn-block">
+                            <span class="icon-name"><i class="fab fa-google"></i></span>
+                            <span class="icon-text">Google</span>
+                        </button>
+                        <button type="button" (click)="redirect()" class="mail btn btn-primary btn-lg btn-block">
+                            <span class="icon-name"> <i class="fa fa-envelope" aria-hidden="true"></i></span>
+                            <span class="icon-text">Email</span>
+                        </button>
+                    </div>
+                    <div class="agree-text">
+                        <div class="form-check">
+                            <div class="form-check-input-inner">
+                                <input [checked]="isChecked" (change)="checkCheckBoxvalue($event)" type="checkbox"
+                                    class="form-check-input" id="exampleCheck1">
+                                <label class="form-check-label" for="exampleCheck1">By Signing Up you agree to
+                                    the</label>
+                            </div>
+                            <p><a href="https://ravel.faith/policies/ravel-terms/" target="_blank">Terms of Services
+                                </a><span> and </span><a href="https://ravel.faith/policies/privacy-policy/"
+                                    target="_blank">Privacy Policy</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

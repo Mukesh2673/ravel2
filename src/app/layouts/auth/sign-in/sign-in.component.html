@@ -1,0 +1,55 @@
+<app-header login='yes'></app-header>
+<div class="backgroundImage">
+
+    <div class="container">
+        <div class="d-flex justify-content-center h-100">
+            <div class="responsive">
+                <div class="card-wrapper">
+                    <div class="sin-in-contnt">
+                        <div class="sigin-screen-area"><span class="nav-divnk">Sign In</span></div>
+                        <div class="content-part">
+                            <img src="assets/img/splash_logo.png">
+                        </div>
+                        <form [formGroup]="signinForm" (ngSubmit)="onSubmit()">
+                            <div class="form-group">
+                                <input type="email" class="form-control input-height" formControlName="email"
+                                    placeholder="Enter email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                        <div *ngIf="f.email.errors.required">Email is required</div>
+                                        <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                                    </div>
+                            </div>
+
+                            <div class="form-group">
+                                <input [type]="fieldTextType ? 'text' : 'password'"  class="form-control  input-height"
+                                    formControlName="password" placeholder="New Password"
+                                    [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+                                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                        <div *ngIf="f.password.errors.required">Password is required</div>
+                                        <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+                                    </div>
+                            </div>
+
+
+                            <div class="form-check" style="text-align: end;">
+                                <label class="form-check-label color">
+                                    <input type="checkbox" class="form-check-input" value=""
+                                        (change)="toggleFieldTextType()">Show Password
+                                </label>
+                            </div>
+
+                            <div class=" adjust-div sign-in-button">
+                                <button type="submit" class="btncolor">Sign in</button>
+                            </div>
+                        </form>
+                
+                    </div>
+                </div>
+            </div>
+
+        </div>
+      
+
+    </div>
+
+</div>

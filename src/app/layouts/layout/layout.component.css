@@ -1,0 +1,313 @@
+#Section-2 .owl-nav {
+    position: absolute !important;
+    top: 50% !important;
+}
+a{
+    color: #fff;
+}
+.owl-nav{
+    position: absolute !important;
+    top: 50% !important;
+}
+.scrollimg{
+    text-align: center;
+    }
+.slide.special-offer img {
+    width: 0%;
+    max-width: 300px;
+    margin: 0 auto;
+}
+.slide.special-offer  .scrollimg h2.card-title {
+    font-size: 26px;
+    /* color: #fff; */
+}
+.slide.special-offer  .card-img-overlay {
+    position: absolute;
+    right: 0;
+    left: 0;
+    padding: 1.25rem;
+    border-radius: calc(.25rem - 1px);
+    width: 300px;
+    position: absolute;
+    top: 41%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.slide.special-offer  .scrollimg p {color: #fff;}
+
+
+/* slider css */
+.carousel-control-next {
+    right: 0px;
+    width: auto;
+    height: auto;
+    top: 50%;
+    bottom: auto;
+    transform: translateY(-50%);
+    padding: 0;
+}
+.carousel-control-prev {
+    width: auto;
+    height: auto;
+    top: 50%;
+    bottom: auto;
+    transform: translateY(-50%);
+    padding: 0;
+    left: 0;    
+}
+.carousel-control-next-icon, .carousel-control-prev-icon {
+    width: 16px !important;
+    height: 30px !important;
+}
+/* slider css end */
+.owl-stage  .owl-next {
+    position: absolute;
+    right: 0;
+    left: auto;
+    top: 50%;
+    transform: translateY(50%);
+    z-index: 1111;
+}
+.owl-stage  .owl-prev {
+     position: absolute;
+    left: 0;
+    left: auto;
+    top: 50%;
+    transform: translateY(50%);
+    z-index: 1111;   
+}
+
+.youtube-icon{ position: absolute;top: 50px;left: 44%;top: 44%;transform: translateY(-50% -50%);}
+.studyTools {
+    position: absolute;
+    margin-top: 24%;
+    align-items: center;
+    margin-left: 18%;
+    
+}
+.Prayer_journal{
+    position: absolute;
+    margin-top: 20%;
+    align-items: center;
+    margin-left: 5%;
+}
+.studyTools a{
+    text-decoration:none;
+}
+.Featured_podcasts{
+    position: absolute;
+    margin-top: 15%;
+    margin-left:7px;
+    align-items: center;
+  
+}
+.card-img, .card-img-top {
+    border-top-left-radius: calc(0.25rem - 1px);
+    border-top-right-radius: calc(0.25rem - 1px);
+    max-height: 230px!important;
+}
+.add-grid figure.effect-layla h2.news {
+    padding-top: 35%!important;
+}
+.the-ward-grid figure.effect-layla h2.words {
+    padding-top: 10%!important;
+}
+.study-tool-grid figure.effect-layla h2.automotive {
+    padding-top: 32%!important;
+}
+.the-ward-grid figure.effect-layla h2.restaurant {
+    padding-top: 20%!important;
+}
+.study-tool-grid figure.effect-layla h2.shop {
+    padding-top: 46%!important;
+}
+.study-tool-grid figure.effect-layla h2.attractions {
+    padding-top: 54%!important;
+}
+.the-ward-grid figure.effect-layla h2.account   nt{
+    padding-top: 25%!important;
+}
+.study-tool-grid figure.effect-layla h2.beauty {
+    padding-top: 54%!important;
+}
+.study-tool-grid figure.effect-layla h2.fitness {
+    padding-top: 54%!important;
+}
+.study-tool-grid figure.effect-layla h2.homeService{
+    padding-top: 56%;
+}
+.study-tool-grid figure.effect-layla h2.realEstateAgents{
+    padding-top: 56%;
+}
+.study-tool-grid figure.effect-layla h2.doctors{
+    padding-top: 56%;
+}
+
+.selectTab{
+    cursor: pointer;
+}
+.selectTab:hover{
+    color: yellow;
+}
+#professionalServices #professional{
+    color: black!important;
+}
+a.profiessionalplace{
+    color: black!important;
+    text-decoration: none;
+    cursor: pointer;
+
+}
+section#Section-4 h3.main-offer {
+    text-align: center;
+    font-weight: 600;
+    font-size: 36px;
+    width: 100%;
+    color: black;
+    margin-bottom: 30px;
+    margin-left:25px;
+}
+.search-section {
+    background: transparent!important; 
+}
+.add-section ul select.ng-untouched.ng-pristine, .input-one select {
+    height: 48px;
+    width: 15rem;
+    padding: 13px 16px;
+    margin-right: -1px;
+    border-radius: 3px 0 0 3px;
+    border: none;
+    background-color: #fff;
+    appearance: none;
+}
+.add-section li.input-one input {
+    height: 44px;
+    width: 15rem;
+    padding: 10px 10px;
+    border-radius: 0 0px 0px 0;
+    border: none;
+    background-color: #fff;  
+}
+
+/* option */
+
+label.chooseInput {
+    margin-bottom: 0rem;
+}
+label.chooseInput {
+    height: 48px !important;
+    width: 15rem !important;
+    padding: 10px 10px !important;
+    border-radius: 0 0px 0px 0 !important;
+    border: none !important;
+    background-color: #fff !important;  
+} 
+input.hoverInput {
+    border: none !important;
+    background-color: #fff !important;  
+    width: 14rem;
+}
+input.hoverInput:focus {
+    outline: none;
+    width: 14rem;
+} 
+
+
+
+
+
+   
+.add-section ul {
+    margin-bottom: 0px;
+}
+.input-one {
+    position: relative;
+}
+li.input-one {
+    position: relative;
+}
+li.input-one::before {
+    border-left: 1px solid rgb(165, 161, 161);
+    content: "";
+    display: block;
+    height: 25px;
+    position: absolute;
+    top: 10px;
+    width: 1px;
+    z-index: 1;
+    left: 0;
+}
+
+.inputFirst ul {
+    background-color: #fff;
+    align-content: flex-start;  
+    flex-direction: row;
+    border-radius: 0px;
+}
+
+.inputFirst {
+    position: absolute;
+    top: 46px;
+    left: 0px;
+    right: 0px;
+}
+.inputFirst ul li{
+    padding: 4px 2px;
+    font-size: 12px;
+}
+
+.inputFirst ul li img{
+    margin-left: 8px;
+}
+
+li.serach-one {
+    margin-right: 0px!important;
+    border-color: #fff;
+    cursor: pointer;
+}
+.add-section ul li.buttonWrap {
+    margin-right: 0 !important;
+}
+.buttonWrap button.serach-one {
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 13px 15px;
+    background: #007bff;
+    border: 1px solid #007bff;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+button.buttonWrap {
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 13px 15px;
+    background: #007bff;
+    border: 1px solid #007bff;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+.search-section .add-section ul .input-one{
+    width: 15rem!important;    
+    padding: 0px 10px;
+}
+.input-one ::ng-deep .autocomplete-container {
+    box-shadow: none;
+}
+::ng-deep .autocomplete-container  .suggestions-container  ::ng-deep ul {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+::ng-deep .autocomplete-container  .suggestions-container  ul ::ng-deep li { 
+    width: 100%;;
+}
+::ng-deep .autocomplete-container  .suggestions-container ul ::ng-deep  li  a {
+    padding: 6px 15px !important;
+    font-size: 12px !important;
+    z-index: 1000!important;
+}
+
+

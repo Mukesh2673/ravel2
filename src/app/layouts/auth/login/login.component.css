@@ -1,0 +1,99 @@
+
+
+.pos{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.login-screen-area{
+    margin-top: 30px;
+}
+.my-lg-0{margin:0 auto;}
+
+.login-page-top{display: flex; align-items: center;justify-content: center;height: 77vh;}
+
+
+
+
+.logo { width: 100%;text-align: center;}
+
+
+.card-wrapper h4{color:#fff;margin-left:16px;margin-right:10px;   font-size: 19px;font-family: 'Poppins', sans-serif;}
+.content-part img{width:150px;}
+input[type=checkbox]{transform:scale(1.5);}
+
+.form-check-label{color:#fff;  font-size: 16px; margin-left:10px;}
+
+p a{color:#fff;font-size:16px;font-weight:500;}
+.form-check p span{color:#fff;    font-size: 16px;}
+.facebook{background-color:#3b5a97;border:#5dbcd2;font-family: 'Poppins', sans-serif;}
+.facebook:hover{background-color: #214873; color: #fff;}
+.instagram{background-color:#8123b2;border:#8123b2; font-family: 'Poppins', sans-serif;}
+.google{background-color:#e6af0b;border:#e6af0b; font-family: 'Poppins', sans-serif;}
+.google:hover{background-color: #cca225; color: #fff;}
+
+ .google1{
+     background-color: #d64d3f;
+     border:#d64d3f; font-family: 'Poppins', sans-serif;
+ }
+
+.mail{background-color:#50ab57;border:#50ab57; font-family: 'Poppins', sans-serif;}
+.mail:hover{  background-color: #358a3c !important;  color: #fff !important;}
+.icon-name { float: left; text-align: left; width: 42%;}
+ .icon-text { float: left; text-align: left; width: 58%; font-size: 16px;  color: #fff;line-height: 29px;} 
+
+.form-check-input-inner { text-align: left;}
+.form-check p {padding-left: 10px; text-align: left;}
+.agree-text .form-check { margin-top: 10px;}
+:focus{ box-shadow: none !important;}
+
+.btn{
+    margin-bottom: 15px;
+}
+
+
+
+
+@media (min-width:0px) and (max-width:319px){
+.login-page{width: 100% !important; max-width: 300px !important;text-align: center !important;margin: 0 auto;}	
+.form-check{ margin: 10px; padding-left: 0px;}	
+	
+}
+
+
+@media (min-width:320px) and (max-width:480px){
+.login-page{width: 100% !important; max-width: 300px !important;text-align: center !important;margin: 0 auto;}	
+.form-check{ margin: 10px; padding-left: 0px;}
+.icon-name{ float: left; text-align: left;width: 38%;}
+	
+}
+
+@media (min-width:481px) and (max-width:661px){
+.login-page{     width: 100% !important; max-width: 400px !important;text-align: center !important;margin: 0 auto;}	
+.form-check{ margin: 10px; padding-left: 0px;}
+	
+}
+
+@media (min-width:661px) and (max-width:767px){
+.form-check{ margin: 10px; padding-left: 0px;}	
+	
+}
+
+
+
+
+
+.apple{
+    background-color: black;
+}
+
+
+
+.container{
+    height: 100%;
+    align-content: center;
+    }
+    
+   

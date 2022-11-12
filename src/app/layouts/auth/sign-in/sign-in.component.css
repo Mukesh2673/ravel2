@@ -1,0 +1,29 @@
+
+.forgotPassword{padding:10px 0px;}
+.forgotPassword span{font-size:16px;color:#fff;text-align:left;width:100%;display:block;margin-top:10px;font-size:16px;    font-family: 'Poppins', sans-serif;}
+.sign-up-account-text{margin:15px 0px;}
+.sign-up-account-text span{color:#fff;font-size:16px;width:100%;text-align:left;display:block;    font-family: 'Poppins', sans-serif;}
+.signup-button-bottom button{background-color:#50ab57;border:#d7463d;color: white;font-family:'Poppins', sans-serif;width:100%;height:46px;}
+.signup-button-bottom button:hover{  background-color: #358a3c !important;  color: #fff !important;}
+.content-part{text-align:center !important}
+/* .form-control{    background-color: #fff !important; border-color:#d0530c;border-block-end-color:#fff !important;    font-size: 16px;} */
+/* input{height:45px;} */
+/* input{background-color:#d0530c !important;height:45px;} */
+
+/* .btn{background-color:#000;color:#fff;margin:0 auto !important;border:#000;} */
+.invalid-feedback{color:#fff !important;}
+:focus {  box-shadow:none;}
+::placeholder{color: #dad7d5 !important;}
+:-ms-input-placeholder{ color: #dad7d5 !important;}
+
+
+.input-height{
+    height:45px;
+}
+.form-check-input{
+    width: 20px;
+    height: 14px;
+}
+.btncolor{
+    color: #fff;
+}

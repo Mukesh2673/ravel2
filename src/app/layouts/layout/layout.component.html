@@ -1,0 +1,730 @@
+<app-header></app-header>
+<!----------------Banner-start----------------->
+<section id="Ravel-Banner">
+  <div class="banner-background">
+    <div class="banner-top">
+      <h3>Meet and encourage one another to have and do good works</h3>
+    </div>
+    <div class="banner-1">
+      <div class="banner-main-section">
+        <h1>Explore Christian Resources in Your City</h1>
+        
+        <div class="search-section">
+          <div class="add-section">
+           <ul>  
+              <div class="input-one">
+
+                <!-- <div class="ng-autocomplete"> -->
+                    <ng-autocomplete 
+                      [data]="data"
+                      [searchKeyword]="keyword"
+                      placeholder="Choose"
+                      (selected)='selectEvent($event)'
+                      (inputChanged)='onChangeSearch($event)'
+                      (inputFocused)='onFocused($event)'
+                      [itemTemplate]="itemTemplate"
+                      [notFoundTemplate]="notFoundTemplate">                                 
+                    </ng-autocomplete>
+
+                    <ng-template #itemTemplate let-item>
+                    <a [innerHTML]="item.name"></a>
+                    </ng-template>
+
+                    <ng-template #notFoundTemplate let-notFound>
+                    <div [innerHTML]="notFound"></div>
+                    </ng-template>
+                    <!-- </div> -->
+ <!-- <label class="chooseInput"><input list="browsers" class="hoverInput" name="myBrowser" placeholder="Choose" /></label> -->
+                      <!-- <datalist id="browsers">
+                        <option value="">choose</option>
+                        <option *ngFor="let props of businessType" >{{ props.name }}</option>
+                      </datalist> -->
+
+                      <!-- <div class="inputFirst">
+                          <ul>
+                            <li><img src="../../../assets/img/star.png" style="height: 15px; width:15px;" alt="1"></li>
+                            <li>Business & Professionals</li>
+                          </ul>
+                          <ul>
+                            <li><img src="../../../assets/img/star.png" style="height: 15px; width:15px;" alt="2"></li>
+                            <li>Ministries</li>
+                          </ul>
+                          <ul>
+                            <li><img src="../../../assets/img/star.png" style="height: 15px; width:15px;" alt="3"></li>
+                            <li>Housing</li>
+                          </ul>
+                          <ul>
+                            <li><img src="../../../assets/img/star.png" style="height: 15px; width:15px;" alt="4"></li>
+                          <li>Employment</li>
+                          </ul> 
+                           
+                       
+
+                      </div>
+ -->
+
+                  <!-- <select placeholder="Keywords" style="cursor: pointer;" [(ngModel)]="selectType" (change)="selectBusiness($event)"	>
+                    <option value="">Choose</option>
+                    <option *ngFor="let props of businessType" [value]="props.value" >{{ props.name }}</option>
+                  </select> -->
+              </div> 
+                       
+              <li class="input-one">
+                  <input placeholder="City, Zip/Postal Code" [(ngModel)]="searchInputAddress"  />
+              </li>
+              <li class="serach-one" (click)="search()" >
+                <button class="buttonWrap">Search</button>
+              </li>
+            </ul>
+          </div>
+          <p class="validateMessage">{{ searchValidateMessage }}</p>
+
+          <div class="add1-section">
+            <ul>
+              <li class="chng-part selectTab" (click)="searchTab('Business & Professionals')">Business & Professionals</li>
+              <li  (click)="searchTab('Ministries')"><span class="selectTab">Ministries</span></li>
+              <li  (click)="searchTab('House')"><span class="selectTab">Housing</span></li>
+              <li class="selectTab" (click)="searchTab('employment')"><span class="selectTab">Employment</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="banner-bottom">
+      <div class="video-arrow">
+        <!-- <a><img class="youtube-set" src="./assets/img/beanner-video.jpg" /></a> -->
+        <!-- <a
+          ><img
+            (click)="toScroll()"
+            class="arrow-chng"
+            src="./assets/img/arrow.png"
+        />
+      </a> -->
+      </div>
+      <div class="discount-arrow">
+        <a href="">
+          <h6 class="disconut-set">Support Local Business & Save!</h6>
+        </a>
+       <!--  <a
+          ><img
+            class="arrow-chng"
+            (click)="toDiscount()"
+            src="./assets/img/arrow.png"
+        /></a> -->
+      </div>
+    </div>
+  </div>
+</section>
+<!----------------Banner-End----------------->
+
+<!----------------section1----------------->
+
+<owl-carousel-o
+  [options]="customOptions"
+  id="carouselExampleFade"
+  class="carouselSlider carousel slide carousel-fade"
+  data-bs-ride="carousel"
+>
+  <ng-container *ngFor="let slide of sliderRes">
+    <ng-template carouselSlide [id]="slide.id">
+      <div class="innerSlide">
+        <div class="video-add">
+          <a [href]="slide.videoUrl" target="_blank" class="cursor">
+            <img [src]="slide.thumbnailUrl" class="card-img-top image-style" />
+            <img
+              _ngcontent-gfa-c113=""
+              src="./assets/img/youtube (3).png"
+              class="youtube-icon"
+            />
+          </a>
+        </div>
+      </div>
+    </ng-template>
+  </ng-container>
+</owl-carousel-o>
+
+<!----------------section1-End----------------->
+
+<!----------------Spectiol-Offer----------------->
+<section id="Section-2">
+  <div class="container">
+    <h3 class="main-offer" id="toDiscount">
+      <span>Promotions </span> | Member Discounts
+    </h3>
+    <h2 style="text-align: center" *ngIf="perpetualList?.length == 0">
+      No Discount Available
+    </h2>
+    <!-- <p>{{perpetualList|json}}</p> -->
+    <owl-carousel-o [options]="customOptions">
+      <ng-template carouselSlide *ngFor="let list of perpetualList">
+        <div class="slide special-offer">
+          <!-- <img src="./assets/img/slid1.jpg"> -->
+          <img
+            style="max-height: 300px"
+            [src]="
+              list?.perpetualAdd.imagePath != null
+                ? ImagebaseUrl + list.perpetualAdd?.imagePath
+                : './assets/img/noimg.jpg'
+            "
+          />
+          <div class="card-img-overlay t_img">
+            <div class="over-view">
+              <div class="scrollimg">
+                <h2 class="card-title">{{ list.perpetualAdd.description }}</h2>
+                <p style="font-size: 14px">This Perpetual add is created by:</p>
+                <p>{{ list.name }}</p>
+                <p>{{ list.email }}</p>
+              </div>
+              <!-- <h5 class="card-title">{{list.name}}</h5> -->
+
+              <!-- <div class="loction-set-2">
+								<span><img src="./assets/icon/icon-set3.png"></span>
+								<p class="card-text">Geeta Mandir BRTS Station Ahmedabad<br>india </p>
+							</div>
+							<div class="loction-set-3">
+								<span><img src="./assets/icon/icon-set2.png"></span>
+								<p class="card-text">06/20/19, 16:08 </p>
+							</div> -->
+              <!-- <h5 class="card-title">{{list.description}}</h5> -->
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </owl-carousel-o>
+  </div>
+</section>
+<!----------------Spectiol-Offer-End----------------->
+
+<!----------------what do you need----------------->
+<section id="Section-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h3 class="section-main-heading">What Do You Need?</h3>
+        <h3 class="main-offer" id="professionalServices">
+          <span>Place to Go </span>  
+        </h3>
+ 
+      </div>
+    </div>
+
+    <div class="row" data-aos="fade-up">
+      <div (click)="restaurants('RESTAURANT')" class="col-sm-12 col-md-8">
+        <div class="the-ward-grid main-grid">
+          <figure class="effect-layla">
+            <img src="./assets/img/resturent.jpg" alt="img12" />
+            <figcaption>
+              <div>
+                <h2 class="restaurant">RESTAURANT</h2>
+              </div>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div (click)="restaurants('SHOP')" class="col-sm-12 col-md-4">
+        <div class="study-tool-grid grid-chng">
+          <figure class="effect-layla">
+            <img src="./assets/img/shop.jpg" alt="img12" />
+            <figcaption>
+              <div>
+                <h2 class="shop">SHOP</h2>
+              </div>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+
+    <div class="row padding-col-what-do" data-aos="fade-down">
+      <div (click)="restaurants('ATTRACTIONS')" class="col-sm-12 col-md-4">
+        <div class="study-tool-grid grid-chng">
+          <figure class="effect-layla">
+            <img src="./assets/img/Attractions.jpg" alt="img12" />
+            <figcaption>
+              <div>
+                <h2 class="attractions">ATTRACTIONS</h2>
+              </div>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+      <div (click)="restaurants('FITNESS')" class="col-sm-12 col-md-4">
+        <div class="study-tool-grid grid-chng">
+          <figure class="effect-layla">
+            <img src="./assets/img/Fitness.jpg" alt="img12" />
+            <figcaption>
+              <div>
+                <h2 class="fitness">FITNESS</h2>
+              </div>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+      <div (click)="restaurants('BEAUTY')" class="col-sm-12 col-md-4">
+        <div class="study-tool-grid grid-chng">
+          <figure class="effect-layla">
+            <img src="./assets/img/Beauty.jpg" alt="img12" />
+            <figcaption>
+              <div>
+                <h2 class="beauty">BEAUTY</h2>
+              </div>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!----------------what do you need End----------------->
+<!----------------profesional Service----------------->
+<section id="Section-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h3 class="main-offer" id="placeToGo">
+           <span> Professional Services</span>
+        </h3>
+      </div>
+    </div>
+
+    <div class="row" data-aos="fade-up">
+      <div (click)="restaurants('RESTAURANT')" class="col-sm-12 col-md-6">
+        <div class="the-ward-grid main-grid">
+          <figure class="effect-layla">
+            <img src="./assets/img/resturent.jpg" alt="img12" />
+            <figcaption>
+              <div>
+                <h2 class="accountant">ACCOUNTANTS</h2>
+              </div>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div (click)="restaurants('SHOP')" class="col-sm-12 col-md-6">
+        <div class="study-tool-grid grid-chng">
+          <figure class="effect-layla">
+            <img src="./assets/img/shop.jpg" alt="img12" />
+            <figcaption>
+              <div>
+                <h2 class="automotive">AUTOMOTIVE</h2>
+              </div>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+
+    <div class="row padding-col-what-do" data-aos="fade-down">
+      <div (click)="restaurants('ATTRACTIONS')" class="col-sm-12 col-md-4">
+        <div class="study-tool-grid grid-chng">
+          <figure class="effect-layla">
+            <img src="./assets/img/Attractions.jpg" alt="img12" />
+            <figcaption>
+              <div>
+                <h2 class="homeService">HOME SERVICES</h2>
+              </div>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+      <div (click)="restaurants('FITNESS')" class="col-sm-12 col-md-4">
+        <div class="study-tool-grid grid-chng">
+          <figure class="effect-layla">
+            <img src="./assets/img/Fitness.jpg" alt="img12" />
+            <figcaption>
+              <div>
+                <h2 class="realEstateAgents">REAL ESTATE AGENTS</h2>
+              </div>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+      <div (click)="restaurants('BEAUTY')" class="col-sm-12 col-md-4">
+        <div class="study-tool-grid grid-chng">
+          <figure class="effect-layla">
+            <img src="./assets/img/Beauty.jpg" alt="img12" />
+            <figcaption>
+              <div>
+                <h2 class="doctors">DOCTORS & DENTISTS</h2>
+              </div>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+      <div (click)="restaurants('BEAUTY')" class="col-sm-12 col-md-6">
+        <div class="study-tool-grid grid-chng">
+          <figure class="effect-layla">
+            <img src="./assets/img/Beauty.jpg" alt="img12" />
+            <figcaption>
+              <div>
+                <h2>LAWYERS</h2>
+              </div>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+      <div (click)="restaurants('BEAUTY')" class="col-sm-12 col-md-6">
+        <div class="study-tool-grid grid-chng">
+          <figure class="effect-layla">
+            <img src="./assets/img/Beauty.jpg" alt="img12" />
+            <figcaption>
+              <div>
+                <h2>BUILDERS</h2>
+              </div>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!----------------profesional Service End----------------->
+
+<!----------------Community & Fellowship---------------->
+<section id="Section-5">
+  <div class="container latest-event-container">
+    <div class="row">
+      <div class="col-md-12" id="toCommunity">
+        <h3 class="section-main-heading">Community & Fellowship</h3>
+        <h3 class="main-offer">
+          <span>Latest Events </span>
+        </h3>
+        <h2 style="text-align: center" *ngIf="latestEvent?.items.length == 0">
+          No latest Event Available
+        </h2>
+      </div>
+    </div>
+
+    <owl-carousel-o [options]="customOption">
+      <ng-container *ngFor="let slide of latestEvent?.items">
+        <ng-template carouselSlide>
+          <div class="card">
+            <img
+              style="max-height: 350px"
+              [src]="slide.photo != '' ? slide.photo : './assets/img/noimg.jpg'"
+            />
+            <div class="card-body">
+              <div class="loction-set-1">
+                <span><img src="./assets/icon/icon-set1.png" /></span>
+                <p class="date-set">
+                  {{ slide.eventName
+                  }}<label>{{ slide.validFrom | date: "dd/MM/yyyy" }}</label>
+                </p>
+              </div>
+              <h5 class="card-title">{{ slide.eventName }}</h5>
+              <div class="loction-set-2">
+                <span><img src="./assets/icon/icon-set3.png" /></span>
+                <p class="card-text">
+                  {{ slide.address.city }}, {{ slide.address.country }}, 10001,
+                  {{ slide.address.country }}
+                </p>
+              </div>
+              <div class="loction-set-3">
+                <span><img src="./assets/icon/icon-set2.png" /></span>
+                <p class="card-text">
+                  {{ slide.validFrom | date: "dd/MM/yyyy" }}
+                </p>
+              </div>
+              <p class="card-text">{{ slide.description }}</p>
+            </div>
+          </div>
+        </ng-template>
+      </ng-container>
+    </owl-carousel-o>
+  </div>
+</section>
+<!----------------Community & Fellowship End----------------->
+
+<!----------------Word & Worship----------------->
+<section id="Section-6">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12" id="toWord">
+        <h3 class="section-main-heading">Word & Worship</h3>
+      </div>
+      <div class="col-sm-12 col-md-8">
+        <div class="row" data-aos="fade-up">
+          <div class="col-sm-12 col-md-12">
+            <a href="https://www.bible.com/bible/111/JHN.1.NIV" target="_blank">
+              <div class="the-ward-grid">
+                <figure class="effect-layla">
+                  <img src="./assets/img/book.jpg" alt="img06" />
+                  <figcaption>
+                    <h2 class="word">THE WORD</h2>
+                  </figcaption>
+                </figure>
+              </div>
+            </a>
+          </div>
+
+          <div class="col-sm-12 col-md-6 col-pad-guide">
+            <div class="row">
+              <div class="col-sm-12 col-md-12">
+                <div class="guided-meditation-grid">
+                  <figure class="effect-layla">
+                    <img src="./assets/img/madition.jpg" alt="img06" />
+                    <figcaption>
+                      <h2>GUIDED MEDITATION</h2>
+                    </figcaption>
+                  </figure>
+                </div>
+              </div>
+
+              <!-- <div (click) = "restaurants('NEWS')"  class="col-sm-12 col-md-12 col-padd-music">
+
+
+								 <div class="guided-meditation-grid">
+									<figure class="effect-layla">
+										<img src="./assets/img/music.jpg" alt="img06">
+										<figcaption>
+											<h2>NEWS & ENTERTAINMENT</h2>
+										</figcaption>
+									</figure>
+								</div>
+
+							</div>  -->
+            </div>
+          </div>
+
+          <div class="col-sm-12 col-md-6 col-padd-live">
+            <div class="live-feeds-grid">
+              <figure class="effect-layla">
+                <img src="./assets/img/Live.jpg" alt="img06" />
+                <figcaption>
+                  <h2>LIVE FEEDS</h2>
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-4">
+        <div class="row" data-aos="fade-down">
+          <div class="col-sm-12 col-md-12">
+            <div class="study-tool-grid">
+              <figure class="effect-layla">
+                <img src="./assets/img/study.jpg" alt="img06" />
+                <figcaption>
+                  <!-- <h2>STUDY TOOLS</h2> -->
+                  <h2>
+                    <div class="studyTools">
+                    <a
+                      href="https://www.bible.com/bible/111/JHN.1.NIV"
+                      target="_blank"
+                      >STUDY TOOLS
+                    </a>
+                  </div>
+                  </h2>
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+
+          <div class="col-sm-12 col-md-12 col-padd-featured">
+            <div class="study-tool-grid">
+              <figure class="effect-layla">
+                <img src="./assets/img/featured.jpg" alt="img06" />
+                <figcaption>
+                  <div class="Featured_podcasts">
+                  <h2>FEATURED PODCASTS</h2>
+                  </div>
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!----------------Word & Worship End----------------->
+
+<!----------------News & Entertainment----------------->
+<section id="Section-7">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12" id="toScroll">
+        <h3 class="section-main-heading">News & Entertainment</h3>
+      </div>
+      <div class="col-sm-12 col-md-6" data-aos="fade-up">
+        <div class="the-ward-grid add-grid">
+          <figure class="effect-layla">
+            <img src="./assets/img/music.jpg" alt="img15" />
+            <figcaption>
+              <h2 class="news">NEWS & ENTERTAINMENT</h2>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="col-sm-12 col-md-6" data-aos="fade-down">
+        <div class="the-ward-grid add-grid">
+          <figure class="effect-layla">
+            <img src="./assets/img/film.jpg" alt="img15" />
+            <figcaption>
+              <h2 class="news">FILM & TV</h2>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="col-sm-12 col-md-6" data-aos="fade-up">
+        <div class="the-ward-grid add-grid">
+          <figure class="effect-layla">
+            <img src="./assets/img/bussiness.jpg" alt="img15" />
+            <figcaption>
+              <h2 class="news">WORLD NEWS</h2>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div
+        (click)="restaurants('VILLAGE')"
+        class="col-sm-12 col-md-6"
+        data-aos="fade-down"
+      >
+        <div class="the-ward-grid add-grid">
+          <figure class="effect-layla">
+            <img src="./assets/img/Attractions.jpg" alt="img15" />
+            <figcaption>
+              <h2 class="news">VIDEO VILLAGE</h2>
+            </figcaption>
+          </figure>
+        </div>
+        <!-- </a> -->
+      </div>
+    </div>
+  </div>
+</section>
+<!----------------News & Entertainment End----------------->
+<!----------------Give & Serve----------------->
+<section id="Section-8">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12" id="toGive">
+        <h3 class="section-main-heading">Give & Serve</h3>
+      </div>
+      <div class="col-sm-12 col-md-6" data-aos="fade-up">
+        <div class="the-ward-grid section-grid">
+          <figure class="effect-layla">
+            <img src="./assets/img/Donation.jpg" alt="img02" />
+            <figcaption>
+              <h2>DONATION</h2>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="col-sm-12 col-md-6" data-aos="fade-down">
+        <div class="the-ward-grid section-grid">
+          <figure class="effect-layla">
+            <img src="./assets/img/add-one.jpg" alt="img02" />
+            <figcaption>
+              <h2>VOLUNTEER OPPORTUNITIES</h2>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!----------------Give & Serve End----------------->
+
+<!----------------Tools & Resources----------------->
+<section id="Section-9">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12" id="toTools">
+        <h3 class="section-main-heading">Tools & Resources</h3>
+      </div>
+      <div class="col-sm-12 col-md-8" data-aos="fade-down">
+        <div class="row">
+          <div class="col-sm-12 col-md-12">
+            <div class="the-ward-grid sec-grid">
+              <figure class="effect-layla">
+                <img src="./assets/img/read.jpg" alt="img04" />
+                <figcaption>
+                  <h2>SELF ASSESMENT EXAMS</h2>
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+
+          <div class="col-sm-12 col-md-6">
+            <div class="row">
+              <div class="col-sm-12 col-md-12 need-talk-padd">
+                <div class="guided-meditation-grid layer-grid">
+                  <figure class="effect-layla">
+                    <img src="./assets/img/need.jpg" alt="img04" />
+                    <figcaption>
+                      <h2>I NEED TO TALK</h2>
+                    </figcaption>
+                  </figure>
+                </div>
+              </div>
+
+              <div class="col-sm-12 col-md-12 need-talk-padd">
+                <div class="guided-meditation-grid layer-grid">
+                  <figure class="effect-layla">
+                    <img src="./assets/img/Apologetics.jpg" alt="img04" />
+                    <figcaption>
+                      <h2>APOLOGETICS</h2>
+                    </figcaption>
+                  </figure>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-6 gratitude-paddding">
+            <div class="live-feeds-grid gratitude-grid">
+              <figure class="effect-layla">
+                <img src="./assets/img/Gratitude.jpg" alt="img04" />
+                <figcaption>
+                  <h2>GRATITUDE JOURNAL</h2>
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-4" data-aos="fade-up">
+        <div class="row">
+          <div class="col-sm-12 col-md-12">
+            <div class="study-tool-grid notes-grid">
+              <figure class="effect-layla">
+                <img src="./assets/img/study.jpg" alt="img04" />
+                <figcaption>
+                  <div class="studyTools">
+                  <h2>STUDY NOTES</h2>
+                  </div>
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-12 prayer-padding">
+            <div class="study-tool-grid notes-grid">
+              <figure class="effect-layla">
+                <img src="./assets/img/Prayer.jpg" alt="img04" />
+                <figcaption>
+                  <div class="Prayer_journal">
+                  <h2>PRAYER JOURNAL</h2>
+                  </div>
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- cookie -->
+
+<!-- cookie close -->
+<!----------------Tools & Resources End----------------->
+<app-footer></app-footer>

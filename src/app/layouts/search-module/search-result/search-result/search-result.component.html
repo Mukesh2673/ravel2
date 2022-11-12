@@ -1,0 +1,197 @@
+<div class="col-sm-12 col-md-12 col-lg-12">
+  <div class="row">
+    <div class="col-sm-7 col-md-7 col-lg-7">
+      <div class="serch-result">
+        <!-- <p>Home / Search Result</p> -->
+        <p>Showing {{listFrom}} - {{listTo}} of {{totalItems}} results</p>
+      </div>
+    </div>
+    <div class="col-sm-5 col-md-5 col-lg-5">
+      <div class="listing-griding-area">
+        <ul>
+          <li>
+            <div class="form-group">
+              <select name="sort" [(ngModel)]="selectSort" (change)="sortList($event)">
+                <option value="">Sort Result</option>
+                <option value="asc">Sort By Name A-Z</option>
+                <option value="desc">Sort By Name Z-A</option>
+              </select>
+            </div>
+          </li>
+          <li (click)="clicklisting()">
+            <i class="fa fa-list" aria-hidden="true"></i>
+          </li>
+          <li (click)="clickBox()">
+            <i class="fa fa-th" aria-hidden="true"></i>
+          </li>
+          <li (click)="clickgoogleMap()">
+            <i class="fa fa-map-marker" aria-hidden="true"></i>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12">
+      <h3>Search Results</h3>
+    </div>
+  </div>
+
+  <div *ngIf="isList && !islisting">
+    <div class="row" *ngFor="
+        let record of searchList
+          | paginate
+            : {
+                itemsPerPage: pageSize,
+                currentPage: pageNo,
+                totalItems: totalItems
+              };
+        let i = index
+      ">
+      <div class="col-sm-12 col-md-12 col-lg-12 margin-bottom">
+        <div class="white-border-line"></div>
+      </div>
+      <div class="col-sm-12 col-md-2 col-lg-2" (click)="detail(record._id)" style="cursor: pointer;">
+        <img class="img-fluid" [src]="setUrl(record.photo)" default="assets/img/errorImage.png">
+      </div>
+      <div class="col-sm-12 col-md-6 col-lg-7">
+        
+        <div class="map-location" *ngIf="searchType!='employment'; else employment">
+          <h5>{{ record.name | titlecase }}</h5>
+          <span><i class="fa fa-map-marker" aria-hidden="true"></i>{{ record?.address?.country }} 
+            <br>{{record?.address?.state}}{{searchType}}
+            <br>{{ record?.address?.city}}
+            <br>{{record?.description}}
+            
+          </span>
+        </div>
+        <ng-template #employment>
+          <div class="map-location employment">
+            <span class="emp">
+            <br>{{record?.jobPost?.role}}
+          <br><i class="fa fa-map-marker" aria-hidden="true"></i>{{(record?.jobBasics?.location).length ? record.jobBasics?.location :  record.jobBasics?.location.country}}
+            <br>{{record?.jobPost?.companyName}}  
+            <br>{{record?.jobPost?.phoneNumber}}
+            <br>{{(record?.jobBasics?.location).length }}
+            </span>
+          </div>
+          </ng-template>
+      </div>
+      <div class="col-sm-12 col-md-4 col-lg-3">
+        <div class="listing-message">
+          <ul>
+            <li class="btn-list"><a (click)="detail(record._id)" style="cursor: pointer;">View Listing</a></li>
+            <li class="btn-message"><a (click)="contact(record._id)" style="cursor: pointer; background-color:black">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="listing-body-area" *ngIf="isList && islisting">
+    <section id="listing-inner-section" class="listing-inner-section">
+      <div class="container">
+        <div class="row" data-aos="fade-up">
+          <div class="shimmer2" *ngFor="let number of [0, 1, 2, 3, 4]"></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div *ngIf="isMap">
+    <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
+      <agm-marker *ngFor="let m of marArr; let i = index" [latitude]="m.lng" [longitude]="m.lat"
+        [markerDraggable]="m.draggable" (dragEnd)="markerDragEnd(m, $event)">
+        <agm-info-window>
+          <strong>{{ m.Business }}</strong><br />
+          <strong>{{ m.city }}</strong><br />
+          <strong>{{ m.state }}</strong><br />
+          <strong>{{ m.postalCode }}</strong><br />
+          <strong>{{ m.country }}</strong><br/>
+
+        </agm-info-window>
+      </agm-marker>
+    </agm-map>
+  </div>
+
+  <!-- Grid Listing -->
+  <div *ngIf="isbox">
+    <div class="row gridBlock" *ngIf="!islisting">
+      <div class="col-sm-12 col-md-12 col-lg-12 margin-bottom">
+        <div class="white-border-line"></div>
+      </div>
+      <div class="col-sm-12 col-md-4 col-lg-4" *ngFor="let record of searchList  | paginate: {
+          itemsPerPage: pageSize,
+          currentPage: pageNo,
+          totalItems: totalItems
+          };let i = index">
+        <div class="listing-message grid-listing" (click)="detail(record._id)" style="cursor: pointer;" *ngIf="searchType!='employment'; else employmentGrid">
+          <img class="img-fluid" [src]="setUrl(record.photo)" default="assets/img/errorImage.png" />
+          <h5>{{ record.name | titlecase }}</h5>
+          <div class="map-location">
+            <span><i class="fa fa-map-marker" aria-hidden="true"></i>{{ record.address.country }} {{
+              record.address.city
+              }}</span>
+            <ul>
+              <li class="btn-list"><a (click)="detail(record._id)" style="cursor: pointer;">View Listing</a></li>
+              <li class="btn-message"><a (click)="contact(record._id)" style="cursor: pointer;">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+        <ng-template #employmentGrid>
+        <div class="listing-message grid-listing" (click)="detail(record._id)" style="cursor: pointer;" #employmentGrid>
+          <img class="img-fluid" [src]="setUrl(record.photo)" default="assets/img/errorImage.png" />
+          <br>{{record?.jobPost?.role}}
+          <div class="map-location">
+            <span><i class="fa fa-map-marker" aria-hidden="true"></i>{{(record?.jobBasics?.location).length ? record.jobBasics?.location :  record.jobBasics?.location.country}}</span>
+            <br>{{record?.jobPost?.companyName}}  
+            <br>{{record?.jobPost?.phoneNumber}}
+            <ul>
+              <li class="btn-list"><a (click)="detail(record._id)" style="cursor: pointer;">View Listing</a></li>
+              <li class="btn-message"><a (click)="contact(record._id)" style="cursor: pointer;">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+      </ng-template>
+      </div>
+    </div>
+
+    <div class="row shimmerBlock gridBlock" *ngIf="islisting">
+      <ng-container *ngFor ="let props of countArr">
+      <div class="col-md-4 col-lg-4">
+        <div class="shimmer2" ></div>
+      </div>
+      <div class="col-md-4 col-lg-4">
+        <div class="shimmer2"></div>
+      </div>
+      <div class="col-md-4 col-lg-4">
+        <div class="shimmer2"></div>
+      </div>
+      </ng-container>
+    </div>
+  </div>
+
+  <div *ngIf="!isMap" class="col-md-offset-4" style="float: left">
+    <pagination-controls class="col s12 col-md-offset-3 my-pagination" *ngIf="searchList?.length > 0" [autoHide]=true
+      (pageChange)="onTableSizeChange($event)" previousLabel="Previous" nextLabel="Next" [responsive]=true
+      screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page" [maxSize]=9
+      screenReaderCurrentLabel="You're on page">
+    </pagination-controls>
+  </div>
+</div>
+
+<div class="page-body" *ngIf="searchList?.length == 0 && !islisting">
+  <div class="row">
+    <div class="col-md-12 col-xl-12">
+      <div class="tab-content">
+        <div class="tab-pane active" id="personal" role="tabpanel">
+          <div class="card NodataFound">
+            <div class="card-block">
+              <h4>No Results Found</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

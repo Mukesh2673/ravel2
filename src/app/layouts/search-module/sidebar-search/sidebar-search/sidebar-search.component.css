@@ -1,0 +1,81 @@
+input#city {
+    margin-top: 10px;
+}
+input#state {
+    margin-top: 10px;
+}
+input#companyName {
+    margin-top: 10px;
+}
+
+input#jobType {
+    margin-top: 10px;
+}
+
+.ngx-slider ::ng-deep .ngx-slider-pointer:after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    position: absolute;
+    top: 5px;
+    left: 6px;
+    border-radius: 50%;
+    background: #fff;
+}
+.ngx-slider ::ng-deep  .ngx-slider-pointer {
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    top: -7px;
+    background-color: #0db9f0;
+    z-index: 3;
+    border-radius: 50%;
+}
+input#jobType {
+    margin-top: 0px!important;
+}
+
+
+.ng5-slider[_ngcontent-serverApp-c147] ::ng-deep  .ng5-slider-pointer {
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    top: -7px;
+    background-color: #0db9f0;
+    z-index: 3;
+    border-radius: 50%;
+}
+.ng5-slider[_ngcontent-serverApp-c147] ::ng-deep .ng5-slider-pointer:after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    position: absolute;
+    top: 5px;
+    left: 6px;
+    border-radius: 50%;
+    background: #fff;
+}
+
+.Sq[_ngcontent-serverApp-c147] {
+    font-size: 14px;
+    align-items: center;
+    color: #55637d;
+}
+.propertySlider{
+    display: flex;
+}
+.housingzip{
+    margin-top: 10px;
+}
+.company{
+    margin-top: 20px;
+}
+.ng-autocomplete ::ng-deep .autocomplete-container .suggestions-container ul li a {
+    padding: 0px;
+    display: block;
+    text-decoration: none;
+    color:#333;
+    cursor: pointer;
+    color: #000000de;
+    font-size: 15px;
+}

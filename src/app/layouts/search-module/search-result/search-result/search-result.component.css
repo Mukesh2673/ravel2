@@ -1,0 +1,25 @@
+agm-map {height: 500px;}
+
+.row.gridBlock .col-lg-4 {
+    display: flex;
+}
+.row.gridBlock .col-lg-4 .listing-message.grid-listing {
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.row.gridBlock .col-lg-4 .listing-message.grid-listing  img {
+    height: 215px;
+    object-fit: cover;
+    -webkit-object-fit: cover;
+    -moz-object-fit: cover;
+}
+.row.shimmerBlock.gridBlock .shimmer2 {
+    height: 400px;
+    margin-bottom: 30px;
+}
+.listing-message ul li.btn-message a:hover {
+    background-color: #fdd244;
+    color: white;
+}

@@ -1,0 +1,390 @@
+<app-header></app-header>
+<div class="detailPageWrap" *ngIf="!shimmer">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-1 col-md-1"></div>
+      <div class="col-md-10 col-lg-10">
+        <div class="ImgTextWrap">
+          <div class="row align-items-center">
+
+            <div class="col-sm-4">
+              <div class="ImgWrap">
+                <img src={{detail.photo}} default="assets/img/errorImage.png" />
+              </div>
+            </div>
+            <div class="col-sm-8" *ngIf="detail">
+              <div class="introWrap">
+                <h1>{{ detail.name }}</h1>
+                <ul>
+                  <li>
+                    <i class="fa fa-map-marker text-danger"></i>
+                    {{ detail.address.country }} {{ detail.address.city }}
+                  </li>
+                </ul>
+                <p>{{detail.description}}</p>
+              </div>
+              <div class="col-sm-6">
+                <a class="btn btn-primary btn-block btn-lg" (click)="contact(detail._id)"
+                  style="cursor: pointer;">Contact</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="TabbWrapper">
+          <ul class="nav nav-pills justify-content-left">
+            <li>
+              <a class="active" [ngClass]="{ active: activeTab === 'home' }" id="home-tab" data-toggle="tab"
+                (click)="toggleTab('home')">Overview</a>
+            </li>
+          </ul>
+
+          <div class="tab-content clearfix">
+            <div class="tab-pane" [ngClass]="{ active: activeTab === 'home' }" id="home">
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="textTab">
+                    <div *ngIf="activeTab === 'home'">
+                      <div>
+                        <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
+                          <agm-marker *ngFor="let m of marArr; let i = index" [latitude]="m.lng" [longitude]="m.lat"
+                            [markerDraggable]="m.draggable" (dragEnd)="markerDragEnd(m, $event)">
+                            <agm-info-window>
+                              <strong>{{ m.streetAddress }}</strong><br />
+                              <strong>{{ m.city }}</strong><br />
+                              <strong>{{ m.state }}</strong><br />
+                              <strong>{{ m.country }}</strong><br />
+
+                            </agm-info-window>
+                          </agm-marker>
+                        </agm-map>
+                      </div>
+                    </div>
+                    <div class="contactInfo">
+                      <h1>Contact Information</h1>
+                      <div class="row">
+                        <div class="col-4">
+                          <p><label>Name</label></p>
+                        </div>
+                        <div class="col-8 infoWrap">
+                          <p class="nameWrap">{{detail.name | titlecase }}</p>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-4">
+                          <p><label>Email</label></p>
+                        </div>
+                        <div class="col-8 infoWrap">
+                          <p class="nameWrap">{{detail.email ? detail.email : '--'}}</p>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-4">
+                          <p><label>Contact No</label></p>
+                        </div>
+                        <div class="col-8 infoWrap">
+                          <p class="nameWrap">{{detail.contactNo ? detail.contactNo : detail.contactNumber ?
+                            detail.contactNumber : '--'}}</p>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-4">
+                          <p><label>Country</label></p>
+                        </div>
+                        <div class="col-8 infoWrap">
+                          <p class="nameWrap">{{detail.address.country ? (detail.address.country | titlecase ) : '--'}}
+                          </p>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-4">
+                          <p><label>State</label></p>
+                        </div>
+                        <div class="col-8 infoWrap">
+                          <p class="nameWrap">{{detail.address.state ? (detail.address.state | titlecase ) : '--'}}</p>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-4">
+                          <p><label>City</label></p>
+                        </div>
+                        <div class="col-8 infoWrap">
+                          <p class="nameWrap">{{detail.address.city ? (detail.address.city | titlecase ) : '--'}}</p>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-4">
+                          <p><label>Street Address</label></p>
+
+                        </div>
+                        <div class="col-8 infoWrap">
+                          <p class="nameWrap">{{detail.address.streetAddress ? detail.address.streetAddress : '--'}}
+                          </p>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-4">
+                          <p><label>Address Location</label></p>
+                        </div>
+                        <div class="col-8 infoWrap">
+                          <p class="nameWrap">{{detail.address.location.coordinates ?
+                            detail.address.location.coordinates : '--'}}</p>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-4">
+                          <p><label>LandMark</label></p>
+                        </div>
+                        <div class="col-8 infoWrap">
+                          <p class="nameWrap">{{detail.address.landMark ? detail.address.landMark : '--'}}</p>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-4">
+                          <p><label>Postal Code</label></p>
+                        </div>
+                        <div class="col-8 infoWrap">
+                          <p class="nameWrap">{{detail.address.postalCode ? detail.address.postalCode : '--'}}</p>
+                        </div>
+                      </div>
+
+                      <div class="aboutBlock">
+                        <h1>About</h1>
+                        <div *ngIf="detail.role ; else loggedOut">
+                          <div class="row">
+                            <div class="col-4">
+                              <p><label>Description</label></p>
+                            </div>
+                            <div class="col-8 infoWrap">
+                              <p class="nameWrap">{{detail.description ? (detail.description | titlecase ) : '--'}}</p>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-4">
+                              <p><label>Welcome Message</label></p>
+                            </div>
+                            <div class="col-8 infoWrap">
+                              <p class="nameWrap">{{detail.shortBio ? (detail.shortBio | titlecase) : '--' }}</p>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-4">
+                              <p><label>Log Line</label></p>
+                            </div>
+                            <div class="col-8 infoWrap">
+                              <p class="nameWrap">{{detail.logLine ? (detail.logLine | titlecase): '--' }}</p>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-4">
+                              <p><label>Role</label></p>
+                            </div>
+                            <div class="col-8 infoWrap">
+                              <p class="nameWrap">{{detail.role ? (detail.role | titlecase) : '--'}}</p>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-4">
+                              <p><label>Visitors Count </label></p>
+                            </div>
+                            <div class="col-8 infoWrap">
+                              <p class="nameWrap">{{detail.visitorsCount ? detail.visitorsCount : '0'}}</p>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-4">
+                              <p><label>Followers</label></p>
+                            </div>
+                            <div class="col-8 infoWrap">
+                              <p class="nameWrap">{{detail.followersCount ? detail.followersCount : '0'}}</p>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-4">
+                              <p><label>Followings</label></p>
+                            </div>
+                            <div class="col-8 infoWrap">
+                              <p class="nameWrap">{{detail.followingsCount ? detail.followingsCount : '0'}}</p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <ng-template #loggedOut>
+                          <div class="row">
+                            <div class="col-4">
+                              <p><label>Title</label></p>
+                            </div>
+                            <div class="col-8 infoWrap">
+                              <p class="nameWrap">{{detail.roomTitle ? (detail.roomTitle | titlecase) : '--'}}</p>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-4">
+                              <p><label>Description</label></p>
+                            </div>
+                            <div class="col-8 infoWrap">
+                              <p class="nameWrap">{{detail.description ? (detail.description | titlecase ) : '--'}}</p>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-4">
+                              <p><label>Housing Type</label></p>
+                            </div>
+                            <div class="col-8 infoWrap">
+                              <p class="nameWrap">{{detail.housingType ? (detail.housingType | titlecase) : '--' }}</p>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-4">
+                              <p><label>House Info</label></p>
+                            </div>
+                            <div class="col-8 infoWrap">
+                              <p class="nameWrap">{{detail.openHouseInfo ? (detail.openHouseInfo | titlecase) : '--'}}
+                              </p>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-4">
+                              <p><label>Sell Status</label></p>
+                            </div>
+                            <div class="col-8 infoWrap">
+                              <p class="nameWrap">{{detail.sellStatus ? (detail.sellStatus | titlecase) : '--'}}</p>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-4">
+                              <p><label>Property Type</label></p>
+                            </div>
+                            <div class="col-8 infoWrap">
+                              <p class="nameWrap">{{detail.propertyType ? (detail.propertyType | titlecase) : '--'}}
+                              </p>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-4">
+                              <p><label>Lot Land Area</label></p>
+                            </div>
+                            <div class="col-8 infoWrap">
+                              <p class="nameWrap">{{detail.lotLandArea ? detail.lotLandArea: '0' }} {{
+                                detail.lotUnitArea ? detail.lotUnitArea : '--'}}</p>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-4">
+                              <p><label>Property Area</label></p>
+                            </div>
+                            <div class="col-8 infoWrap">
+                              <p class="nameWrap">{{detail.propertyArea ? detail.propertyArea : '0' }} {{
+                                detail.propertyUnitArea ? detail.propertyUnitArea : '--'}}</p>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-4">
+                              <p><label>Price</label></p>
+                            </div>
+                            <div class="col-8 infoWrap">
+                              <p class="nameWrap">{{detail.price ? detail.price : '0'}}</p>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-4">
+                              <p><label>Monthly Rent</label></p>
+                            </div>
+                            <div class="col-8 infoWrap">
+                              <p class="nameWrap">{{detail.monthlyRent ? detail.monthlyRent : '0'}}</p>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-4">
+                              <p><label>Weekly Rent</label></p>
+                            </div>
+                            <div class="col-8 infoWrap">
+                              <p class="nameWrap">{{detail.weeklyRent ? detail.weeklyRent : '0'}}</p>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-4">
+                              <p><label>Rental Period</label></p>
+                            </div>
+                            <div class="col-8 infoWrap">
+                              <p class="nameWrap">{{detail.rentalPeriod ? detail.rentalPeriod : '--'}}</p>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-4">
+                              <p><label>Bed Room</label></p>
+                            </div>
+                            <div class="col-8 infoWrap">
+                              <p class="nameWrap">{{detail.bedRoomCount ? detail.bedRoomCount : '0'}}</p>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-4">
+                              <p><label>Wash Room</label></p>
+                            </div>
+                            <div class="col-8 infoWrap">
+                              <p class="nameWrap">{{detail.washRoomCount ? detail.washRoomCount : '0'}}</p>
+                            </div>
+                          </div>
+                        </ng-template>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tabbing End-->
+      </div>
+      <div class="col-lg-1 col-md-1"></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Shimmer Start -->
+<div *ngIf="shimmer" class="detailPageWrap ShimmerWrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-1 col-md-1"></div>
+      <div class="col-md-10 col-lg-10">
+        <div class="row align-items-center">
+          <div class="col-sm-12" *ngIf="detail">
+            <div class="introWrap">
+              <div class="shimmer2 mobileNetWrap" *ngFor="let number of [0]"></div>
+              <!-- <button type="button" class="sendBtm btn btn-primary">
+                Send Message
+              </button> -->
+            </div>
+          </div>
+        </div>
+        <!-- <div class="messageLine">
+          <p>
+            <i class="fa fa-comments-o fa-fw" aria-hidden="true"></i>
+            <b>MAKE A CONNECTION</b> Sanjeet Diwan is accepting messages:
+            <a href="#">Send Message</a>
+          </p>
+        </div> -->
+        <!-- Tabbing Start-->
+
+        <div class="TabbWrapper">
+          <ul class="nav nav-pills justify-content-left">
+            <div class="shimmer2 mapShimmer" *ngFor="let number of [0]"></div>
+            <!-- <li>
+              <a id="profile-tab" [ngClass]="{ active: activeTab === 'profile' }" data-toggle="tab"
+                (click)="toggleTab('profile')">Specialties</a>
+            </li> -->
+          </ul>
+        </div>
+      </div>
+
+      <!-- Tabbing End-->
+    </div>
+    <div class="col-lg-1 col-md-2"></div>
+  </div>
+</div>
+<!-- Shimmer End -->
+<app-footer></app-footer>
